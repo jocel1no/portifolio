@@ -9,8 +9,8 @@
    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const NOME_1 = "Jocelino ";
-            const NOME_2 = "Sousa";
+            const NOME_1 = "Contato ";
+            const NOME_2 = "";
             const INTERVALO_DIGITACAO = 200;
             const INTERVALO_CURSOR = 500;
             const ATRASO_DIGITACAO = 1000; // Ajuste conforme necessário
@@ -129,9 +129,13 @@
         </header>
         <main class="apresentacao">
             <section class="apresentacao__conteudo">
-                <h1 class="apresentacao__conteudo__titulo">Entre em <strong 
-                    class="titulo-destaque">contato
-                    </strong></h1>
+                <h1 class="apresentacao__conteudo__titulo">
+                    <span id="nomeDigitado1" class="apresentacao__conteudo__titulo"></span>
+                    <strong class="titulo-destaque">
+                        <span id="nomeDigitado2" class="titulo-destaque"></span>
+                        <span id="cursor"></span>
+                    </strong>
+                </h1>
                     <main>
                         <form class="form" action="https://formspree.io/f/xpzgevjz" method="POST">
                             <label form="nome">Nome:</label>
@@ -143,7 +147,7 @@
                             <label form="textarea">Mensagem:</label>
                             <textarea name="message" id="textarea" cols="30" rows="10" placeholder="Sua mensagem..." ></textarea>
         
-                            <input type="hidden" name="_next" value="https://file:///C:/Users/layan/OneDrive/%C3%81rea%20de%20Trabalho/PROJETO%20ALURA/contact.html/emailenviado.html">
+                            <input type="hidden" name="_next" value="contact.html">
         
                             <button type="submit">Enviar</button>
                        </form>
@@ -169,34 +173,7 @@
   </body>
  
   
- <script>
-    const imagemRastreavel = document.getElementById('imagemRastreavel');
-
-    document.addEventListener('mousemove', (e) => {
-        const { clientX, clientY } = e;
-        const { left, top, width, height } = imagemRastreavel.getBoundingClientRect();
-
-        const centerX = left + width / 2;
-        const centerY = top + height / 2;
-
-        const deltaX = centerX - clientX; // Invertido para ir na direção oposta
-        const deltaY = centerY - clientY; // Invertido para ir na direção oposta
-
-        const parallaxAmount = 0.02; // Ajuste conforme necessário para o efeito desejado
-
-        const translateX = deltaX * parallaxAmount;
-        const translateY = deltaY * parallaxAmount;
-
-        const transform = `translate(${translateX}px, ${translateY}px)`;
-        imagemRastreavel.style.transition = 'transform 0.2s ease-out'; // Adiciona uma transição suave
-        imagemRastreavel.style.transform = transform;
-    });
-
-    imagemRastreavel.addEventListener('mouseleave', () => {
-        imagemRastreavel.style.transition = 'transform 0.2s ease-in'; // Adiciona uma transição suave ao sair
-        imagemRastreavel.style.transform = 'translate(0, 0)';
-    });
-</script>
+ 
 
 
         
