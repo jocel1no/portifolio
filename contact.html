@@ -155,7 +155,34 @@
             </section>
             <img id="imagemRastreavel" class="apresentacao__imagem" src="./assets/Imagem.png" alt="Foto do Jocelino">
         </main>
-       
+        <script>
+            const imagemRastreavel = document.getElementById('imagemRastreavel');
+        
+            document.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const { left, top, width, height } = imagemRastreavel.getBoundingClientRect();
+        
+                const centerX = left + width / 2;
+                const centerY = top + height / 2;
+        
+                const deltaX = centerX - clientX; // Invertido para ir na direção oposta
+                const deltaY = centerY - clientY; // Invertido para ir na direção oposta
+        
+                const parallaxAmount = 0.02; // Ajuste conforme necessário para o efeito desejado
+        
+                const translateX = deltaX * parallaxAmount;
+                const translateY = deltaY * parallaxAmount;
+        
+                const transform = `translate(${translateX}px, ${translateY}px)`;
+                imagemRastreavel.style.transition = 'transform 0.2s ease-out'; // Adiciona uma transição suave
+                imagemRastreavel.style.transform = transform;
+            });
+        
+            imagemRastreavel.addEventListener('mouseleave', () => {
+                imagemRastreavel.style.transition = 'transform 0.2s ease-in'; // Adiciona uma transição suave ao sair
+                imagemRastreavel.style.transform = 'translate(0, 0)';
+            });
+        </script>
         <footer class="rodape">
             <div class="imagens">
                 <img src="assets/alura.png" alt="Logo da Empresa" class="rodape__logo">
