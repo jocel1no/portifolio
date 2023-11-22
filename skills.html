@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const NOME_1 = "Minhas ";
+            const NOME_2 = "Habilidades";
+            const INTERVALO_DIGITACAO = 200;
+            const INTERVALO_CURSOR = 500;
+            const ATRASO_DIGITACAO = 1000; // Ajuste conforme necessário
+            const ATRASO_APAGAR = 1000; // Ajuste conforme necessário
+            const ATRASO_PROXIMA_ITERACAO = 2000; // Ajuste conforme necessário
+    
+            const nomeSpan1 = document.getElementById('nomeDigitado1');
+            const nomeSpan2 = document.getElementById('nomeDigitado2');
+            const cursorSpan = document.getElementById('cursor');
+    
+            function digitarNome(nome, span) {
+                return new Promise(resolve => {
+                    let index = 0;
+                    const intervaloDigitar = setInterval(function () {
+                        if (index < nome.length) {
+                            span.textContent += nome.charAt(index);
+                            index++;
+                        } else {
+                            clearInterval(intervaloDigitar);
+                            resolve();
+                        }
+                    }, INTERVALO_DIGITACAO);
+                });
+            }
+    
+            function apagarNome(span) {
+                return new Promise(resolve => {
+                    let index = span.textContent.length - 1;
+                    const intervaloApagar = setInterval(function () {
+                        if (index >= 0) {
+                            span.textContent = span.textContent.slice(0, index);
+                            index--;
+                        } else {
+                            clearInterval(intervaloApagar);
+                            resolve();
+                        }
+                    }, INTERVALO_DIGITACAO);
+                });
+            }
+    
+            function pausar(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+    
+            function piscarCursor() {
+                cursorSpan.style.visibility = (cursorSpan.style.visibility === 'visible') ? 'hidden' : 'visible';
+            }
+    
+            async function iniciarDigitacao() {
+                await pausar(ATRASO_DIGITACAO); // Atraso antes de começar a digitar
+                while (true) {
+                    await digitarNome(NOME_1, nomeSpan1);
+                    await digitarNome(NOME_2, nomeSpan2);
+                    await pausar(ATRASO_APAGAR); // Atraso antes de começar a apagar
+                    await apagarNome(nomeSpan2);
+                    await apagarNome(nomeSpan1);
+                    await pausar(ATRASO_PROXIMA_ITERACAO); // Atraso antes da próxima iteração
+                }
+            }
+    
+            setInterval(piscarCursor, INTERVALO_CURSOR);
+            iniciarDigitacao();
+        });
+    </script>
+    
+    
+    
+
+    
+
+    <style>
+        /* Seu CSS aqui */
+        .apresentacao__imagem {
+            transition: transform 0.3s ease;
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.cabecalho__menu');
+
+    menuToggle.addEventListener('click', function () {
+        menu.classList.toggle('show-menu');
+    });
+});
+
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <title>Portifolio</title>
+    </head>
+    <body>
+        <header class="cabecalho">
+            <nav class="cabecalho__menu">
+                <a class="cabecalho__menu__link menu-link" href="index.html">Home</a>
+                <a class="cabecalho__menu__link menu-link" href="about.html">Sobre mim</a>
+                <a class="cabecalho__menu__link menu-link" href="skills.html">Minhas habilidades</a>
+                <a class="cabecalho__menu__link menu-link" href="contact.html">Contato</a>
+            </nav>
+    
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                </button>
+    
+        </header>
+        
+        <main class="apresentacao">
+            <section class="apresentacao__conteudo">
+                
+                <h1 class="apresentacao__conteudo__titulo">
+                    <span id="nomeDigitado1" class="apresentacao__conteudo__titulo"></span> <strong class="titulo-destaque">
+                        <span id="nomeDigitado2" class="titulo-destaque"></span>
+                        <span id="cursor"></span>
+                    </strong>
+                    
+                </h1>
+                <p class="apresentacao__conteudo__texto">Como parte do meu percurso acadêmico e profissional, venho explorando diversas áreas para aprimorar e diversificar minhas habilidades. Enquanto curso Direito, meu interesse por tecnologia me levou a participar do curso "Talentos do Futuro", em colaboração com a Alura Inclui. Durante esse programa, dediquei-me a adquirir conhecimentos sólidos em linguagens como CSS, HTML e JavaScript, fundamentais para o desenvolvimento de interfaces digitais e experiências de usuário aprimoradas.
+                </p>
+                <p class="apresentacao__conteudo__texto_2">
+                    Atualmente, estou embarcando em uma jornada de aprendizado em programação, concentrando-me no desenvolvimento de habilidades em PHP e Python. Essa decisão não apenas amplia meu leque de competências técnicas, mas também me permite explorar novas possibilidades e desafios na área da tecnologia da informação.</p>
+            </section>
+            <img class="apresentacao__imagem" id="imagemRastreavel" src="assets/imagem.png" alt="Foto de Jocelino Sousa">
+        </main>
+        <footer class="rodape">
+            <div class="imagens">
+                <img src="assets/alura.png" alt="Logo da Empresa" class="rodape__logo">
+                <img src="assets/alura.png" alt="Outra Imagem" class="rodape__logo">
+            </div>
+            <div class="texto">
+                <p>Desenvolvido por Jocelino.</p>
+            </div>
+        </footer>
+        
+        <!-- Seu código HTML acima desta linha -->
+
+
+  
+  </body>
+ 
+  
+ <script>
+    const imagemRastreavel = document.getElementById('imagemRastreavel');
+
+    document.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = imagemRastreavel.getBoundingClientRect();
+
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
+
+        const deltaX = centerX - clientX; // Invertido para ir na direção oposta
+        const deltaY = centerY - clientY; // Invertido para ir na direção oposta
+
+        const parallaxAmount = 0.02; // Ajuste conforme necessário para o efeito desejado
+
+        const translateX = deltaX * parallaxAmount;
+        const translateY = deltaY * parallaxAmount;
+
+        const transform = `translate(${translateX}px, ${translateY}px)`;
+        imagemRastreavel.style.transition = 'transform 0.2s ease-out'; // Adiciona uma transição suave
+        imagemRastreavel.style.transform = transform;
+    });
+
+    imagemRastreavel.addEventListener('mouseleave', () => {
+        imagemRastreavel.style.transition = 'transform 0.2s ease-in'; // Adiciona uma transição suave ao sair
+        imagemRastreavel.style.transform = 'translate(0, 0)';
+    });
+</script>
+
+
+        
+    </body>
+</html>
+
